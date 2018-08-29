@@ -98,6 +98,7 @@
   <ItemGroup>
     <ClCompile Include="scripts\linkbootfile" />
     <ClCompile Include="src\core\kernel.cpp" />
+    <ClCompile Include="src\core\kernel2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -53,5 +53,8 @@
     <ClCompile Include="scripts\linkbootfile">
       <Filter>Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\kernel2.cpp">
+      <Filter>Fichiers sources\core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

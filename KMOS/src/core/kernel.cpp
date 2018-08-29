@@ -160,7 +160,7 @@ extern "C" {
 		/* Initialize terminal interface */
 		terminal_initialize();
  
-		terminal_writestring("Bienvenu sur /c4 BranlOS loli!\n");
-		terminal_writestring("hey!");
+		terminal_writestring("Bienvenu sur /c9Branl/c4OS/c7!\n");
+		terminal_writestring("/c4CE TEXTE EST ROUGE !!!!\n");
 	}
 }
