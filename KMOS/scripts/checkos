@@ -1,0 +1,6 @@
+echo Launching OS checking...
+if grub-file --is-x86-multiboot bin/myos.bin; then
+  echo multiboot is OK
+else
+  echo ERROR: the file is not multiboot !!!
+fi
