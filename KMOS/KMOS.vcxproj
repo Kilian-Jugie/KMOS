@@ -92,6 +92,7 @@
     <None Include="scripts\compilekernel.bat" />
     <None Include="scripts\createiso" />
     <None Include="scripts\launch.bat" />
+    <None Include="scripts\pushgit.bat" />
     <None Include="src\core\boot.s" />
     <None Include="src\core\linker.ld" />
   </ItemGroup>
@@ -99,6 +100,11 @@
     <ClCompile Include="scripts\linkbootfile" />
     <ClCompile Include="src\core\kernel.cpp" />
     <ClCompile Include="src\core\kernel2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\core\kernel.hpp" />
+    <ClInclude Include="src\core\terminal.h" />
+    <ClInclude Include="src\core\vgautils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

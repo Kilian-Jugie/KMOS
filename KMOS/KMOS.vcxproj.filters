@@ -19,6 +19,9 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{fc6ebe42-0957-40bc-8736-03f201703902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\core">
+      <UniqueIdentifier>{8df8a7f1-7138-4b8e-9bee-6383dda837a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\boot.s">
@@ -45,6 +48,9 @@
     <None Include="scripts\launch.bat">
       <Filter>Scripts</Filter>
     </None>
+    <None Include="scripts\pushgit.bat">
+      <Filter>Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\kernel.cpp">
@@ -56,5 +62,16 @@
     <ClCompile Include="src\core\kernel2.cpp">
       <Filter>Fichiers sources\core</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\core\kernel.hpp">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\terminal.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\vgautils.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

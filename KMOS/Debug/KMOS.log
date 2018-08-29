@@ -9,12 +9,12 @@
   Media current: stdio file, overwriteable
   Media status : is blank
   Media summary: 0 sessions, 0 data blocks, 0 data,  586g free
-  Added to ISO image: directory '/'='/tmp/grub.8iQNrx'
+  Added to ISO image: directory '/'='/tmp/grub.04ov86'
   xorriso : UPDATE : 277 files added in 1 seconds
   Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
   xorriso : UPDATE : 282 files added in 1 seconds
   xorriso : NOTE : Copying to System Area: 512 bytes from file '/usr/lib/grub/i386-pc/boot_hybrid.img'
-  ISO image produced: 2481 sectors
-  Written to medium : 2481 sectors at LBA 0
+  ISO image produced: 2480 sectors
+  Written to medium : 2480 sectors at LBA 0
   Writing to 'stdio:bin/myos.iso' completed successfully.
   
