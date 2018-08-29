@@ -50,6 +50,11 @@ size_t strlen(const char* str)
 	return len;
 }
  
+enum CustomChar {
+	COLOR,
+	NONE
+};
+
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
  
@@ -58,8 +63,11 @@ size_t terminal_column;
 uint8_t terminal_color;
 uint16_t* terminal_buffer;
 
-char* color_code_array;
-size_t color_code_size_left;
+char* custom_char_array;
+int custom_char_size_left;
+
+CustomChar custom_char_active;
+
  
 void terminal_initialize(void) 
 {
@@ -85,27 +93,52 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 	const size_t index = y * VGA_WIDTH + x;
 	terminal_buffer[index] = vga_entry(c, color);
 }
+
+
  
 void terminal_putchar(char c) 
 {
+	if (custom_char_size_left == -1) {
+		switch (c)
+		{
+		case 'c': {
+			custom_char_size_left = 1;
+			custom_char_active = COLOR;
+		}break;
+		default:
+			break;
+		}
+		return;
+	}
+	else if (custom_char_size_left > 0) {
+		--custom_char_size_left;
+		switch (custom_char_active)
+		{
+		case COLOR:
+			terminal_color = (c - '0');
+			return;
+		case NONE:
+			break;
+		default:
+			break;
+		}
+	}
+
 	if (c == '\n') {
 		++terminal_row;
-		terminal_column = 0;
+		terminal_column = 0u;
 		return;
 	}
-	else if (c == '}') {
-		color_code_size_left = 6;
-		
+	else if (c == '/') {
+		custom_char_size_left = -1;
 		return;
 	}
-	else if (color_code_size_left > 0) {
-		--color_code_size_left;
-	}
+	
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 	if (++terminal_column == VGA_WIDTH) {
-		terminal_column = 0;
+		terminal_column = 0u;
 		if (++terminal_row == VGA_HEIGHT)
-			terminal_row = 0;
+			terminal_row = 0u;
 	}
 }
  
@@ -127,7 +160,7 @@ extern "C" {
 		/* Initialize terminal interface */
 		terminal_initialize();
  
-		terminal_writestring("Bienvenu sur BranlOS loli!\n");
+		terminal_writestring("Bienvenu sur /c4 BranlOS loli!\n");
 		terminal_writestring("hey!");
 	}
 }

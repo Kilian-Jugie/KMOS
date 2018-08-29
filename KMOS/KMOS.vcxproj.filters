@@ -42,6 +42,9 @@
     <None Include="src\core\linker.ld">
       <Filter>Fichiers sources\core</Filter>
     </None>
+    <None Include="scripts\launch.bat">
+      <Filter>Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\core\kernel.cpp">

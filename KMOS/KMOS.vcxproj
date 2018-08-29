@@ -64,20 +64,24 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeBuildCommandLine>scripts/compileAndLaunch.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeOutput>scripts/launch.bat</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <NMakeBuildCommandLine>scripts/compileAndLaunch.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeOutput>scripts/launch.bat</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <NMakeBuildCommandLine>scripts/compileAndLaunch.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeOutput>scripts/launch.bat</NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <NMakeBuildCommandLine>scripts/compileAndLaunch.bat</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeOutput>scripts/launch.bat</NMakeOutput>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
@@ -87,6 +91,7 @@
     <None Include="scripts\compilekernel" />
     <None Include="scripts\compilekernel.bat" />
     <None Include="scripts\createiso" />
+    <None Include="scripts\launch.bat" />
     <None Include="src\core\boot.s" />
     <None Include="src\core\linker.ld" />
   </ItemGroup>
