@@ -67,21 +67,25 @@
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
     <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
@@ -103,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\kernel.hpp" />
+    <ClInclude Include="src\core\memory.h" />
     <ClInclude Include="src\core\terminal.h" />
     <ClInclude Include="src\core\vgautils.h" />
   </ItemGroup>

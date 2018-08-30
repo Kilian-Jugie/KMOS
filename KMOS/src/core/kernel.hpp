@@ -13,6 +13,8 @@
 #define KMOS_VER 00001
 #define KMOS_VER_STR "0.0.01"
 
+//#define NULL 0LL
+
 //#ifdef UNICODE
 //using char_t = wchar_t;
 //#else
@@ -28,6 +30,7 @@ namespace Core {
 			return 0;
 		}
 
+		//Write string to terminal
 		void write(const char_t* ch) {
 			m_Terminal.write(ch);
 

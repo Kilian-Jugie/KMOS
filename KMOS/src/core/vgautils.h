@@ -28,11 +28,13 @@ namespace Core {
 			VGA_COLOR_WHITE = 15,
 		};
 
+		//Convert readable color format to vga-readable format
 		static inline uint8_t entryColor(enum vga_color fg, enum vga_color bg)
 		{
 			return fg | bg << 4;
 		}
 
+		//Convert a character to vga-readable format with color support
 		static inline uint16_t entry(unsigned char uc, uint8_t color)
 		{
 			return (uint16_t)uc | (uint16_t)color << 8;

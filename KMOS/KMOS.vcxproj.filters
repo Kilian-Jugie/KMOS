@@ -73,5 +73,8 @@
     <ClInclude Include="src\core\vgautils.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\memory.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
