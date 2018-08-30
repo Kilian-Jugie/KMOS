@@ -13,19 +13,38 @@ namespace Core {
 				size_t size;
 			};
 
-			struct _mm_gbl_mdl { //MeMory GloBaL MoDeL
+			struct _mm_gbl_mdl {  //MeMory GloBaL MoDeL
 			private:
-				void* fmptr;	//Free Memory PoinTer
-				void** frrblks[100000]; //Free Blocks
+				void* fmptr;	//Free Memory PoiTeR
+				_mm_free_blk frrblks[100000]; //Free blocks
 				int freeblksIndex;
 
 			public:
-				void fwrd(size_t size) { //Froward memory pointer of size
+				void fwrd(size_t size) { //Forward
 					fmptr += size;
+				}
+			};
+
+			struct _mm_core { //MeMory Core
+			private:
+				static _mm_gbl_mdl _gbl_mdl;
+
+			public:
+				inline static const _mm_gbl_mdl* getGblMdl() {
+					return &_gbl_mdl;
 				}
 			};
 		}
 	}
+
+	class _fnctr_malloc {
+	public:
+		public void* operator()(size_t size) {
+
+		}
+	};
+
+	_fnctr_malloc malloc;
 }
 
 #endif
