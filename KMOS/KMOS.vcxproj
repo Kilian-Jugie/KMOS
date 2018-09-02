@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\kernel.hpp" />
+    <ClInclude Include="src\core\maths.h" />
     <ClInclude Include="src\core\memory.h" />
     <ClInclude Include="src\core\terminal.h" />
     <ClInclude Include="src\core\vgautils.h" />

@@ -3,10 +3,14 @@
   In file included from src/core/terminal.h:4,
                    from src/core/kernel.hpp:6,
                    from src/core/kernel2.cpp:1:
-  src/core/memory.h: In member function 'void Core::Memory::_mm_gbl_mdl::fwrd(size_t)':
-src/core/memory.h(19,12): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
-        fmptr += size;
-        ~~~~~~^~~~~~~
+  src/core/memory.h: In function 'void* Core::malloc(size_t, size_t*)':
+src/core/memory.h(77,33): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
+      _mm_core::getGblMdl()->fmptr += s;
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+  src/core/memory.h: In function 'void Core::free(void*, size_t, bool)':
+src/core/memory.h(86,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
+        ++ptr = NULL;
+          ^~~
   In file included from src/core/kernel.hpp:6,
                    from src/core/kernel2.cpp:1:
   src/core/terminal.h: In function 'void kernel_main()':
@@ -24,13 +28,13 @@ src/core/terminal.h(58,29): warning G24ED18FC: 'k.Core::Terminal<char>::m_Custom
   Drive current: -outdev 'stdio:bin/myos.iso'
   Media current: stdio file, overwriteable
   Media status : is blank
-  Media summary: 0 sessions, 0 data blocks, 0 data,  586g free
-  Added to ISO image: directory '/'='/tmp/grub.w20lue'
+  Media summary: 0 sessions, 0 data blocks, 0 data,  584g free
+  Added to ISO image: directory '/'='/tmp/grub.BmSAHo'
   xorriso : UPDATE : 277 files added in 1 seconds
   Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
   xorriso : UPDATE : 282 files added in 1 seconds
   xorriso : NOTE : Copying to System Area: 512 bytes from file '/usr/lib/grub/i386-pc/boot_hybrid.img'
-  ISO image produced: 2480 sectors
-  Written to medium : 2480 sectors at LBA 0
+  ISO image produced: 2482 sectors
+  Written to medium : 2482 sectors at LBA 0
   Writing to 'stdio:bin/myos.iso' completed successfully.
   
