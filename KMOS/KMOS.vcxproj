@@ -106,6 +106,7 @@
     <ClCompile Include="src\core\kernel2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="kmoslib.h" />
     <ClInclude Include="src\core\kernel.hpp" />
     <ClInclude Include="src\core\maths.h" />
     <ClInclude Include="src\core\memory.h" />

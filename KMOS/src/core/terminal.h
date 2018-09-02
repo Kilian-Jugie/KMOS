@@ -44,8 +44,9 @@ namespace Core {
 				{
 				case 'c': { //Color handling
 					m_CustomCharSizeLeft = 2; //Color range: 00~15 so 2 characters required
-					//m_CustomCharArrayBuffer = new _CharType[2];
+					m_CustomCharArrayBuffer = (_CharType*)malloc(2*sizeof(_CharType));
 					m_CustomChActive = Core::Terminal<_CharType>::COLOR;
+					return;
 				}
 				default: {}break;
 				}
@@ -68,8 +69,9 @@ namespace Core {
 
 							[TO OPTMIZE ?]
 						*/
-						//delete[] m_CustomCharArrayBuffer;
+						free(m_CustomCharArrayBuffer, 2 * sizeof(_CharType));
 					}
+					return;
 				}
 					break;
 				case Core::Terminal<_CharType>::NONE:
@@ -86,6 +88,7 @@ namespace Core {
 			}
 			else if (c == '/') { //Custom char
 				m_CustomCharSizeLeft = -1;
+				return;
 			}
 			putEntryAt(c, m_Color, m_Column, m_Row); //Add the character
 			if (++m_Column == m_MaxWidth) { //Out of range check

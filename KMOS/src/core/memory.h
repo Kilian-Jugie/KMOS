@@ -15,6 +15,7 @@
  */
 
 #define MEMORY_SIZE_COUNT 21
+#define MINIMUM_ALIGNMENT 16
 
 namespace Core {
 	namespace Memory {
@@ -57,39 +58,57 @@ namespace Core {
 
 	_mm_gbl_mdl _mm_core::_gbl_mdl;
 
+	extern "C" {
+		void __initMemory() { //Init fmptr to a valable adresse
+			int BEGIN;
+			_mm_core::getGblMdl()->fmptr = &BEGIN;
+		}
+
+		/*
+			Allocate s memory size and return a pointer to it
+			futurSize = size after aligned
+		*/
 		void* malloc(size_t s, size_t* futurSize = NULL) {
-			if (s < 8) s = 8;
-			else if (s % 2) s = rtpt(s);
-			if (futurSize) *futurSize = s;
-			const uint32_t l(log2_32(s) - 4);
-			_mm_free_blk** array = _mm_core::getGblMdl()->frrblks[l];
+			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT;
+			else if (s % 2) s = rtpt(s); //If s is not a power of 2, align it
+			if (futurSize) *futurSize = s; //Put the aligned size to futurSize
+			const uint32_t l(log2_32(s) - 4); //get the power of two used (-4 because minimum is 16=2^4)
+			_mm_free_blk** array = _mm_core::getGblMdl()->frrblks[l]; //We get the power's correspondant array 
 			for (uint32_t i(0u); i < _mm_core::getGblMdl()->freeblksIndex[l]; ++i) {
-				if (array[i]->size == s) {
-					void* ret(array[i]->dataptr);
-					array[i]->size = 0u;
-					array[i]->dataptr = NULL;
+				if (array[i]->size == s) { //If a sufficient space is founded
+					void* ret(array[i]->dataptr); //Save the space position
+					array[i]->size = 0u; //Set size to 0 to make this block marked
+					array[i]->dataptr = NULL; //Set the dataptr to null to hide possible futurs data
 					return ret;
 				}
 			}
-			void* ret(_mm_core::getGblMdl()->fmptr);
-			_mm_core::getGblMdl()->fmptr += s;
+			void* ret(_mm_core::getGblMdl()->fmptr); //If no spaces are founded, we use the fmptr who point the free space begin
+			_mm_core::getGblMdl()->fmptr += s; //We increment the fmptr by the size to still point the free space begin
 			return ret;
 		}
 
 		void free(void* ptr, size_t s, bool erase = false) {
-			if (s < 8) s = 8;
+			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT; //We align s to power of 2
 			else if (s % 2) s = rtpt(s);
-			if (erase) {
+			if (erase) { //Erase is used with critical data who must leave no trace
 				for (uint32_t i(0u); i < s; ++i) {
 					++ptr = NULL;
 				}
 			}
-			const uint32_t l(log2_32(s) - 4);
-			_mm_free_blk blk;
+			const uint32_t l(log2_32(s) - 4); //We get the correspondant power of 2
+			_mm_free_blk blk; //We create a _mm_free_blk structure to mark the block empty
 			blk.dataptr = ptr;
 			blk.size = s;
-			_mm_core::getGblMdl()->frrblks[l][_mm_core::getGblMdl()->freeblksIndex[l] + 1] = &blk;
+			_mm_free_blk** array = _mm_core::getGblMdl()->frrblks[l];  //We get the power's correspondant array to put our new free block
+			for (uint32_t i(0u); i < _mm_core::getGblMdl()->freeblksIndex[l]; ++i) { //We check if there is already an index occuped by a free space and if found, replace it
+				if (array[i]->size == 0) {
+					array[i] = &blk;
+					return;
+				}
+			}
+			_mm_core::getGblMdl()->frrblks[l][_mm_core::getGblMdl()->freeblksIndex[l]++] = &blk; //Si aucun espace n'est trouvé, on rajoute à la fin en pensant à incrémenter l'index des blocks libres
 		}
+	}
 
 }
 

@@ -79,5 +79,8 @@
     <ClInclude Include="src\core\maths.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
+    <ClInclude Include="kmoslib.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

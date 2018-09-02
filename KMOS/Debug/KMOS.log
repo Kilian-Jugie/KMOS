@@ -4,19 +4,22 @@
                    from src/core/kernel.hpp:6,
                    from src/core/kernel2.cpp:1:
   src/core/memory.h: In function 'void* Core::malloc(size_t, size_t*)':
-src/core/memory.h(77,33): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
-      _mm_core::getGblMdl()->fmptr += s;
+src/core/memory.h(86,33): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
+      _mm_core::getGblMdl()->fmptr += s; //We increment the fmptr by the size to still point the free space begin
       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
   src/core/memory.h: In function 'void Core::free(void*, size_t, bool)':
-src/core/memory.h(86,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
+src/core/memory.h(95,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
         ++ptr = NULL;
           ^~~
+  src/core/kernel2.cpp: In function 'void kernel_main()':
+src/core/kernel2.cpp(26,10): warning G77590269: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+     str2 = "excellent\n";
+            ^~~~~~~~~~~~~
   In file included from src/core/kernel.hpp:6,
                    from src/core/kernel2.cpp:1:
-  src/core/terminal.h: In function 'void kernel_main()':
-src/core/terminal.h(58,29): warning G24ED18FC: 'k.Core::Terminal<char>::m_CustomCharArrayBuffer' may be used uninitialized in this function [-Wmaybe-uninitialized]
-        m_CustomCharArrayBuffer[m_CustomCharSizeLeft] = c; //Capturing character but in inverted order to simplify the function
-        ~~~~~~~~~~~~~~~~~~~~~~~^
+src/core/terminal.h(61,105): warning G24ED18FC: 'k.Core::Terminal<char>::m_CustomCharArrayBuffer' may be used uninitialized in this function [-Wmaybe-uninitialized]
+         setColor((vga_utils::vga_color)((m_CustomCharArrayBuffer[1] - '0') * 10 + (m_CustomCharArrayBuffer[0] - '0'))); //Converting 2 chars to int:
+                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~^
   src/core/kernel2.cpp:6:16: note: 'k.Core::Terminal<char>::m_CustomCharArrayBuffer' was declared here
      Core::Kernel k;
                   ^
@@ -28,8 +31,8 @@ src/core/terminal.h(58,29): warning G24ED18FC: 'k.Core::Terminal<char>::m_Custom
   Drive current: -outdev 'stdio:bin/myos.iso'
   Media current: stdio file, overwriteable
   Media status : is blank
-  Media summary: 0 sessions, 0 data blocks, 0 data,  584g free
-  Added to ISO image: directory '/'='/tmp/grub.BmSAHo'
+  Media summary: 0 sessions, 0 data blocks, 0 data,  748g free
+  Added to ISO image: directory '/'='/tmp/grub.9BwIFO'
   xorriso : UPDATE : 277 files added in 1 seconds
   Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
   xorriso : UPDATE : 282 files added in 1 seconds

@@ -11,7 +11,7 @@
 
 #define KMOS
 #define KMOS_VER 00001
-#define KMOS_VER_STR "0.0.01"
+#define KMOS_VER_STR "0.0.02"
 
 //#define NULL 0LL
 
@@ -33,7 +33,10 @@ namespace Core {
 		//Write string to terminal
 		void write(const char_t* ch) {
 			m_Terminal.write(ch);
+		}
 
+		void write(const char_t* ch, size_t size) {
+			m_Terminal.write(ch, size);
 		}
 
 
