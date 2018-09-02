@@ -70,7 +70,7 @@ namespace Core {
 		*/
 		void* malloc(size_t s, size_t* futurSize = NULL) {
 			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT;
-			else if (s % 2) s = rtpt(s); //If s is not a power of 2, align it
+			else s = rtpt(s); //If s is not a power of 2, align it
 			if (futurSize) *futurSize = s; //Put the aligned size to futurSize
 			const uint32_t l(log2_32(s) - 4); //get the power of two used (-4 because minimum is 16=2^4)
 			_mm_free_blk** array = _mm_core::getGblMdl()->frrblks[l]; //We get the power's correspondant array 
@@ -89,7 +89,7 @@ namespace Core {
 
 		void free(void* ptr, size_t s, bool erase = false) {
 			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT; //We align s to power of 2
-			else if (s % 2) s = rtpt(s);
+			else s = rtpt(s);
 			if (erase) { //Erase is used with critical data who must leave no trace
 				for (uint32_t i(0u); i < s; ++i) {
 					++ptr = NULL;

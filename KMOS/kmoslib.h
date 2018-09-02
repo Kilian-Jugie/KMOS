@@ -3,7 +3,7 @@
 
 namespace {
 	inline constexpr int ctoi(const char ch) {
-		return '0'-ch;
+		return ch-'0';
 	}
 
 	inline constexpr const char* itoc(const int i) {
