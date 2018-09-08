@@ -1,12 +1,19 @@
 #include "kernel.hpp"
 
 extern "C" {
+	void main(Core::Kernel k) {
+		k.write("Starting KMOS...\n");
+
+	}
+
 	void kernel_main(void)
 	{
 		Core::Kernel k;
 		k.init();
 		Core::__initMemory();
-		k.write("Bienvenu sur BranlOS\n");
+		main(k);
+
+		/*
 		char* str = reinterpret_cast<char*>(Core::malloc(16));
 		char* str2 = reinterpret_cast<char*>(Core::malloc(16));
 		
@@ -31,6 +38,8 @@ extern "C" {
 
 		Core::free(str2, 16);
 		Core::free(str, 16);
-		k.write("/c04CE TEXTE EST ROUGE !!!!\n");
+
+		//k.write("0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
+		k.write("/c04CE TEXTE EST ROUGE !!!!\n");*/
 	}
 }

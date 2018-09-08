@@ -65,27 +65,39 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
-    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
-    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include</IncludePath>
+    <NMakeForcedIncludes>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
-    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
-    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include</IncludePath>
+    <NMakeForcedIncludes>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
-    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
-    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include</IncludePath>
+    <NMakeForcedIncludes>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeBuildCommandLine>scripts/compilekernel.bat</NMakeBuildCommandLine>
-    <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>
+    </NMakePreprocessorDefinitions>
     <NMakeOutput>scripts/launch.bat</NMakeOutput>
-    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\cross\lib\gcc\i686-elf\8.1.0\include</IncludePath>
+    <NMakeForcedIncludes>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeIncludeSearchPath>D:\cross\lib\gcc\i686-elf\8.1.0\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
@@ -106,12 +118,14 @@
     <ClCompile Include="src\core\kernel2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="kmoslib.h" />
     <ClInclude Include="src\core\kernel.hpp" />
-    <ClInclude Include="src\core\maths.h" />
+    <ClInclude Include="src\core\kmosdefs.h" />
+    <ClInclude Include="src\core\kmoslib.h" />
     <ClInclude Include="src\core\memory.h" />
     <ClInclude Include="src\core\terminal.h" />
     <ClInclude Include="src\core\vgautils.h" />
+    <ClInclude Include="src\extensions\smartptr.h" />
+    <ClInclude Include="src\extensions\version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,13 +5,7 @@
 #include <stdint.h>
 #include "terminal.h"
 
-#if defined(_WIN32) || defined(__linux__)
-#error This file is create to and only to KMOS operating system and must not be used on another operating system
-#endif
 
-#define KMOS
-#define KMOS_VER 00001
-#define KMOS_VER_STR "0.0.02"
 
 //#define NULL 0LL
 

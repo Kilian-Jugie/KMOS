@@ -1,6 +1,6 @@
 #ifndef _MEMORY_H_GUARD
 #define _MEMORY_H_GUARD
-#include "maths.h"
+#include "kmoslib.h"
 
 /*		KMOS MEMORY MANAGMENT
  *
@@ -53,8 +53,8 @@ namespace Core {
 	using Memory::_mm_free_blk;
 	using Memory::_mm_core;
 	using Memory::_mm_gbl_mdl;
-	using Maths::rtpt;
-	using Maths::log2_32;
+	using kmos::rtpt;
+	using kmos::log2_32;
 
 	_mm_gbl_mdl _mm_core::_gbl_mdl;
 
@@ -70,7 +70,7 @@ namespace Core {
 		*/
 		void* malloc(size_t s, size_t* futurSize = NULL) {
 			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT;
-			else s = rtpt(s); //If s is not a power of 2, align it
+			else s = rtpt(s); //We align s on power of 2
 			if (futurSize) *futurSize = s; //Put the aligned size to futurSize
 			const uint32_t l(log2_32(s) - 4); //get the power of two used (-4 because minimum is 16=2^4)
 			_mm_free_blk** array = _mm_core::getGblMdl()->frrblks[l]; //We get the power's correspondant array 

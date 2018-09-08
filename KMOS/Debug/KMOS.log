@@ -1,5 +1,30 @@
 ﻿  Linking boot file...
   Compiling kernel...
+  In file included from src/core/memory.h:3,
+                   from src/core/terminal.h:4,
+                   from src/core/kernel.hpp:6,
+                   from src/core/kernel2.cpp:1:
+  src/core/kmoslib.h: In function 'constexpr const char* kmos::uitoc(unsigned int)':
+src/core/kmoslib.h(126,2): warning G3DBB0245: no return statement in function returning non-void [-Wreturn-type]
+    }
+    ^
+src/core/kmoslib.h(124,52): warning G40510A9C: unused parameter 'i' [-Wunused-parameter]
+    inline constexpr const char* uitoc(const unsigned i) {
+                                       ~~~~~~~~~~~~~~~^
+  src/core/kmoslib.h: In function 'constexpr const char* kmos::illtoc(long long int)':
+src/core/kmoslib.h(130,2): warning G3DBB0245: no return statement in function returning non-void [-Wreturn-type]
+    }
+    ^
+src/core/kmoslib.h(128,54): warning G40510A9C: unused parameter 'i' [-Wunused-parameter]
+    inline constexpr const char* illtoc(const long long i) {
+                                        ~~~~~~~~~~~~~~~~^
+  src/core/kmoslib.h: In function 'constexpr const char* kmos::ullitoc(long long unsigned int)':
+src/core/kmoslib.h(136,2): warning G3DBB0245: no return statement in function returning non-void [-Wreturn-type]
+    }
+    ^
+src/core/kmoslib.h(134,64): warning G40510A9C: unused parameter 'i' [-Wunused-parameter]
+    inline constexpr const char* ullitoc(const unsigned long long i) {
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~^
   In file included from src/core/terminal.h:4,
                    from src/core/kernel.hpp:6,
                    from src/core/kernel2.cpp:1:
@@ -11,18 +36,6 @@ src/core/memory.h(86,33): warning G9E8478B0: pointer of type 'void *' used in ar
 src/core/memory.h(95,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
         ++ptr = NULL;
           ^~~
-  src/core/kernel2.cpp: In function 'void kernel_main()':
-src/core/kernel2.cpp(26,10): warning G77590269: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
-     str2 = "excellent\n";
-            ^~~~~~~~~~~~~
-  In file included from src/core/kernel.hpp:6,
-                   from src/core/kernel2.cpp:1:
-src/core/terminal.h(61,105): warning G24ED18FC: 'k.Core::Terminal<char>::m_CustomCharArrayBuffer' may be used uninitialized in this function [-Wmaybe-uninitialized]
-         setColor((vga_utils::vga_color)((m_CustomCharArrayBuffer[1] - '0') * 10 + (m_CustomCharArrayBuffer[0] - '0'))); //Converting 2 chars to int:
-                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~^
-  src/core/kernel2.cpp:6:16: note: 'k.Core::Terminal<char>::m_CustomCharArrayBuffer' was declared here
-     Core::Kernel k;
-                  ^
   Linking and generation OS file...
   Launching OS checking...
   multiboot is OK
@@ -32,7 +45,7 @@ src/core/terminal.h(61,105): warning G24ED18FC: 'k.Core::Terminal<char>::m_Custo
   Media current: stdio file, overwriteable
   Media status : is blank
   Media summary: 0 sessions, 0 data blocks, 0 data,  748g free
-  Added to ISO image: directory '/'='/tmp/grub.9BwIFO'
+  Added to ISO image: directory '/'='/tmp/grub.gvF59c'
   xorriso : UPDATE : 277 files added in 1 seconds
   Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
   xorriso : UPDATE : 282 files added in 1 seconds

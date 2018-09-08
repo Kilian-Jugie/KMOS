@@ -22,6 +22,9 @@
     <Filter Include="Fichiers d%27en-tête\core">
       <UniqueIdentifier>{8df8a7f1-7138-4b8e-9bee-6383dda837a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\extensions">
+      <UniqueIdentifier>{4a4a25d5-de7b-452d-8a61-2b41b62d49a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\boot.s">
@@ -76,11 +79,17 @@
     <ClInclude Include="src\core\memory.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\maths.h">
+    <ClInclude Include="src\core\kmoslib.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
     </ClInclude>
-    <ClInclude Include="kmoslib.h">
+    <ClInclude Include="src\core\kmosdefs.h">
       <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\extensions\version.h">
+      <Filter>Fichiers d%27en-tête\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\extensions\smartptr.h">
+      <Filter>Fichiers d%27en-tête\extensions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
