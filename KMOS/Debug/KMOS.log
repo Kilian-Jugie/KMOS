@@ -1,45 +1,11 @@
 ﻿  Linking boot file...
   Compiling kernel...
   Compiling cpp files...
-  In file included from ./src/core/terminal.h:4,
-                   from ./src/core/kernel.hpp:6,
-                   from ./src/core/kernel2.cpp:1:
-  ./src/core/memory.h: In function 'void* Core::malloc(uint32_t, uint32_t*)':
-./src/core/memory.h(86,33): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
-      _mm_core::getGblMdl()->fmptr += s; //We increment the fmptr by the size to still point the free space begin
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
-  ./src/core/memory.h: In function 'void Core::free(void*, uint32_t, bool)':
-./src/core/memory.h(95,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
-        ++ptr = 0;
-          ^~~
-  In file included from ./src/extensions/smartptr.h:3,
-                   from ./src/extensions/version.h:4,
-                   from ./src/extensions/version.cpp:1:
-  ./src/extensions/../core/memory.h: In function 'void* Core::malloc(uint32_t, uint32_t*)':
-./src/extensions/../core/memory.h(86,33): warning G9E8478B0: pointer of type 'void *' used in arithmetic [-Wpointer-arith]
-      _mm_core::getGblMdl()->fmptr += s; //We increment the fmptr by the size to still point the free space begin
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~
-  ./src/extensions/../core/memory.h: In function 'void Core::free(void*, uint32_t, bool)':
-./src/extensions/../core/memory.h(95,8): warning G29D34289: ISO C++ forbids incrementing a pointer of type 'void*' [-Wpointer-arith]
-        ++ptr = 0;
-          ^~~
   Compiling file: ./src/core/kernel2.cpp
   Compiling file: ./src/extensions/version.cpp
-  Linking and generation OS file...
-  Launching OS checking...
-  multiboot is OK
-  xorriso 1.4.2 : RockRidge filesystem manipulator, libburnia project.
-  
-  Drive current: -outdev 'stdio:bin/myos.iso'
-  Media current: stdio file, overwriteable
-  Media status : is blank
-  Media summary: 0 sessions, 0 data blocks, 0 data,  745g free
-  Added to ISO image: directory '/'='/tmp/grub.l3sCJA'
-  xorriso : UPDATE : 277 files added in 1 seconds
-  Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
-  xorriso : UPDATE : 282 files added in 1 seconds
-  xorriso : NOTE : Copying to System Area: 512 bytes from file '/usr/lib/grub/i386-pc/boot_hybrid.img'
-  ISO image produced: 2483 sectors
-  Written to medium : 2483 sectors at LBA 0
-  Writing to 'stdio:bin/myos.iso' completed successfully.
-  
+  Compilation sucessfull !
+  Linking...
+  Launching OS GRUB checking...
+  OS GRUB checking is OK
+  Starting generating OS file...
+  All is done OS is ready

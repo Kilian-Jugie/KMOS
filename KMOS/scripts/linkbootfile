@@ -1,2 +1,3 @@
 echo Linking boot file...
 /mnt/d/cross/bin/i686-elf-as src/core/boot.s -o obj/boot.o
+exit $?

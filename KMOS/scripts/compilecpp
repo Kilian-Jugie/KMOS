@@ -1,6 +1,5 @@
 #!/bin/bash
 echo Compiling cpp files...
-#/mnt/d/cross/bin/i686-elf-g++ -c src/extensions/version.cpp -o obj/version.o -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti;
 cppFiles=`find -name \*.cpp`
 /mnt/d/cross/bin/i686-elf-g++ -c $cppFiles -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti;
 for file in $cppFiles
@@ -10,5 +9,6 @@ do
 	oFile=${oFile##*/}
 	mv $oFile ./obj
 done
-#/mnt/d/cross/bin/i686-elf-g++ -c src/core/kernel2.cpp src/extensions/version.cpp -o obj/kernel.o -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti;
+#Old cmd
+#/mnt/d/cross/bin/i686-elf-g++ -c src/core/kernel2.cpp -o obj/kernel.o -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti;
 exit 0

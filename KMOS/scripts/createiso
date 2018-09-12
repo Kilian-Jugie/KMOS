@@ -1,3 +1,10 @@
+#!/bin/bash
+echo Starting generating OS file...
 cp bin/myos.bin bin/isodir/boot/myos.bin
 cp grub/grub.cfg bin/isodir/boot/grub/grub.cfg
-grub-mkrescue -o bin/myos.iso bin/isodir
+grub-mkrescue -o bin/myos.iso bin/isodir &> log/grub_mkrescue.log
+if [ $? = 0 ]; then
+	echo All is done OS is ready
+else
+	echo ERROR during OS file generation...
+fi

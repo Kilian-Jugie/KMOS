@@ -17,6 +17,9 @@
 #define MEMORY_SIZE_COUNT 21
 #define MINIMUM_ALIGNMENT 16
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpointer-arith"
+
 namespace Core {
 	namespace Memory {
 		extern "C" {
@@ -111,5 +114,7 @@ namespace Core {
 	}
 
 }
+
+#pragma GCC diagnostic pop
 
 #endif
