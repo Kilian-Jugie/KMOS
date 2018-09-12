@@ -113,9 +113,13 @@
     <None Include="src\core\linker.ld" />
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="scripts\compilecpp">
+      <FileType>Document</FileType>
+    </CustomBuild>
     <ClCompile Include="scripts\linkbootfile" />
     <ClCompile Include="src\core\kernel.cpp" />
     <ClCompile Include="src\core\kernel2.cpp" />
+    <ClCompile Include="src\extensions\version.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\kernel.hpp" />

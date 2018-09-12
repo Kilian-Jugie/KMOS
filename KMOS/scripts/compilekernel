@@ -1,8 +1,10 @@
 #!/bin/bash
 echo Compiling kernel...
-if /mnt/d/cross/bin/i686-elf-g++ -c src/core/kernel2.cpp -o obj/kernel.o -ffreestanding -O2 -Wall -Wextra -fno-exceptions -fno-rtti; then
+bash scripts/compilecpp
+if [ $? = 0 ]; then
 	echo Linking and generation OS file...
-	/mnt/d/cross/bin/i686-elf-g++ -T src/core/linker.ld -o bin/myos.bin -ffreestanding -O2 -nostdlib obj/boot.o obj/kernel.o -lgcc
+	oFiles=`find -name \*.o`
+	/mnt/d/cross/bin/i686-elf-g++ -T src/core/linker.ld -o bin/myos.bin -ffreestanding -O2 -nostdlib $oFiles -lgcc -Xlinker -zmuldefs
 	sh scripts/checkos
 else
 	echo error during kernel compilation exiting...

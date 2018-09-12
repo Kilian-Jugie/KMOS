@@ -1,7 +1,7 @@
 #ifndef _VGAUTILS_H_GUARD
 #define _VGAUTILS_H_GUARD
 
-#define VGA_ADDR 0xB8000
+constexpr auto VGA_ADDR = 0xB8000;
 
 namespace Core {
 	class vga_utils {

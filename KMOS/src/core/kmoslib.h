@@ -62,7 +62,7 @@ namespace kmos {
 	/*
 		char to int
 	*/
-	constexpr int32_t ctoi(const char* ch, const size_t size) {
+	constexpr int32_t ctoi(const char* ch, const uint32_t size) {
 		int32_t ret=0;
 		for (uint32_t i(ch[0]=='-'?1u:0u); i<size; ++i) 
 			ret += ctoi(ch[i])*ppow(10, size - i-1);
@@ -73,7 +73,7 @@ namespace kmos {
 	/*
 		char to unsigned int
 	*/
-	constexpr uint32_t ctoui(const char* ch, const size_t size) {
+	constexpr uint32_t ctoui(const char* ch, const uint32_t size) {
 		uint32_t ret = 0u;
 		for (uint32_t i(0u); i < size; ++i) 
 			ret += ctoi(ch[i])*ppow(10, size - i - 1);
@@ -83,7 +83,7 @@ namespace kmos {
 	/*
 		char to long long
 	*/
-	constexpr int64_t ctoll(const char* ch, const size_t size) {
+	constexpr int64_t ctoll(const char* ch, const uint32_t size) {
 		int64_t ret = 0;
 		for (uint32_t i(ch[0] == '-' ? 1u : 0u); i < size; ++i)
 			ret += ctoi(ch[i])*ppow(10, size - i - 1);
@@ -94,14 +94,14 @@ namespace kmos {
 	/*
 		char to unsigned long long
 	*/
-	constexpr uint64_t ctoull(const char* ch, const size_t size) {
+	constexpr uint64_t ctoull(const char* ch, const uint32_t size) {
 		uint64_t ret = 0u;
 		for (uint32_t i(0u); i < size; ++i)
 			ret += ctoi(ch[i])*ppow(10, size - i - 1);
 		return ret;
 	}
 
-	///DO NOT USE THIS FUNCTION: use itoc, uitoc, lltoc, ulltoc instead
+	///DO NOT USE THIS FUNCTION: use itoc, lltoc instead
 	template<typename _Ty>constexpr int __itoc_base(_Ty i, char* buf, uint32_t size) {
 		if (0 == i) {
 			buf = const_cast<char*>("0\0");
@@ -115,11 +115,23 @@ namespace kmos {
 			buf[_i] += '-';
 		}
 		else {
-			for (uint32_t _i(size - 2); i; i /= 10, --_i) {
+			for (uint32_t _i(size - 2); i; i /= 10, --_i) 
 				buf[_i] = ('0' + char(i % 10));
-			}
 		}
 		return size;
+	}
+
+	///DO NOT USE THIS FUNCTION: use uitoc, ulltoc instead
+	template<typename _Ty>constexpr int __uitoc_base(_Ty i, char* buf, uint32_t size) {
+		if (0 == i) {
+			buf = const_cast<char*>("0\0");
+			return 2;
+		}
+		buf[size - 1] = '\0';
+		for (uint32_t _i(size - 2); i; i /= 10, --_i) 
+			buf[_i] = ('0' + char(i % 10));
+		return size;
+
 	}
 
 	/*
@@ -141,7 +153,7 @@ namespace kmos {
 		@return used size
 	*/
 	constexpr int uitoc(unsigned int i, char* buf, uint32_t size = UINT_CHAR_MAX_LENGTH) {
-		return __itoc_base(i, buf, size);
+		return __uitoc_base(i, buf, size);
 	}
 
 	/*
@@ -163,13 +175,9 @@ namespace kmos {
 		@return used size
 	*/
 	constexpr int ulltoc(unsigned long long i, char* buf, uint32_t size = ULONG_LONG_CHAR_MAX_LENGTH) {
-		return __itoc_base(i, buf, size);
+		return __uitoc_base(i, buf, size);
 	}
 
-	
-
-
-	
 }
 
 #endif

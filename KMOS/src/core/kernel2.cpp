@@ -1,7 +1,8 @@
 #include "kernel.hpp"
+#include "../extensions/version.h"
 
 extern "C" {
-	void main(Core::Kernel k) {
+	void main(Core::Kernel& k) {
 		k.write("Starting KMOS...\n");
 
 	}
@@ -12,6 +13,7 @@ extern "C" {
 		k.init();
 		Core::__initMemory();
 		main(k);
+		k.write("/c04LOL\n");
 
 		/*
 		char* str = reinterpret_cast<char*>(Core::malloc(16));

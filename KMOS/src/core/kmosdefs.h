@@ -20,9 +20,15 @@ using char_t = char;
 #define _T(x) x
 #endif // KMOS_USE_UNICODE
 
-
 #define STR(x) #x
 #define LSTR(x) L##(STR(x))
+
+#ifndef NULL
+#define NULL 0LL
+#endif // !NULL
+
+using size_t = uint32_t;
+
 
 
 

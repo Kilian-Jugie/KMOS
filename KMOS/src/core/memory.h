@@ -22,13 +22,13 @@ namespace Core {
 		extern "C" {
 			struct _mm_free_blk { //MeMory free BLocK
 				void* dataptr;
-				size_t size;
+				uint32_t size;
 			};
 
 			struct _mm_gbl_mdl {  //MeMory GloBaL MoDeL
 				void* fmptr;	//Free Memory PoiTeR
 				_mm_free_blk* frrblks[MEMORY_SIZE_COUNT][100000]; //Free blocks
-				size_t freeblksIndex[MEMORY_SIZE_COUNT];
+				uint32_t freeblksIndex[MEMORY_SIZE_COUNT];
 
 				_mm_gbl_mdl() {
 					for (uint32_t i(0u); i < MEMORY_SIZE_COUNT; ++i)
@@ -68,7 +68,7 @@ namespace Core {
 			Allocate s memory size and return a pointer to it
 			futurSize = size after aligned
 		*/
-		void* malloc(size_t s, size_t* futurSize = NULL) {
+		void* malloc(uint32_t s, uint32_t* futurSize = 0) {
 			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT;
 			else s = rtpt(s); //We align s on power of 2
 			if (futurSize) *futurSize = s; //Put the aligned size to futurSize
@@ -78,7 +78,7 @@ namespace Core {
 				if (array[i]->size == s) { //If a sufficient space is founded
 					void* ret(array[i]->dataptr); //Save the space position
 					array[i]->size = 0u; //Set size to 0 to make this block marked
-					array[i]->dataptr = NULL; //Set the dataptr to null to hide possible futurs data
+					array[i]->dataptr = 0; //Set the dataptr to null to hide possible futurs data
 					return ret;
 				}
 			}
@@ -87,12 +87,12 @@ namespace Core {
 			return ret;
 		}
 
-		void free(void* ptr, size_t s, bool erase = false) {
+		void free(void* ptr, uint32_t s, bool erase = false) {
 			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT; //We align s to power of 2
 			else s = rtpt(s);
 			if (erase) { //Erase is used with critical data who must leave no trace
 				for (uint32_t i(0u); i < s; ++i) {
-					++ptr = NULL;
+					++ptr = 0;
 				}
 			}
 			const uint32_t l(log2_32(s) - 4); //We get the correspondant power of 2

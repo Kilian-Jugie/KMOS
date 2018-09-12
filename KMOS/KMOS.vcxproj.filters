@@ -25,6 +25,9 @@
     <Filter Include="Fichiers d%27en-tête\extensions">
       <UniqueIdentifier>{4a4a25d5-de7b-452d-8a61-2b41b62d49a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\extensions">
+      <UniqueIdentifier>{70c58c1f-6d46-459e-b525-62b17e048635}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\boot.s">
@@ -65,6 +68,9 @@
     <ClCompile Include="src\core\kernel2.cpp">
       <Filter>Fichiers sources\core</Filter>
     </ClCompile>
+    <ClCompile Include="src\extensions\version.cpp">
+      <Filter>Fichiers sources\extensions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\core\kernel.hpp">
@@ -91,5 +97,10 @@
     <ClInclude Include="src\extensions\smartptr.h">
       <Filter>Fichiers d%27en-tête\extensions</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="scripts\compilecpp">
+      <Filter>Scripts</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>
