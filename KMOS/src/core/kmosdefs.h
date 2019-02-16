@@ -6,11 +6,10 @@
 #endif
 
 #define KMOS
-constexpr auto BASE_VERSION = 00002;
-constexpr auto BASE_VERSION_STR = "0.0.02";
-constexpr auto KERNEL_VERSION = 001;
 
-#ifdef KMOS_USE_UNICODE
+#define KMOS_FORCE_UTF8
+
+#if defined(KMOS_USE_UNICODE) && !defined(KMOS_FORCE_UTF8)
 #define UNICODE
 #define _UNICODE
 using char_t wchar_t
@@ -27,7 +26,7 @@ using char_t = char;
 #define NULL 0LL
 #endif // !NULL
 
-using size_t = uint32_t;
+//using uint32_t = uint32_t;
 
 
 

@@ -4,9 +4,9 @@
 #include "memory.h"
 namespace Core {
 	//strlen provisoire
-	size_t strlen(const char* str)
+	uint32_t strlen(const char* str)
 	{
-		size_t len = 0;
+		uint32_t len = 0;
 		while (str[len])
 			len++;
 		return len;
@@ -17,7 +17,7 @@ namespace Core {
 		_CharType: type of displayed char
 	*/
 	template<class _CharType>class Terminal {
-		size_t m_Row, m_Column, m_MaxWidth, m_MaxHeight;
+		uint32_t m_Row, m_Column, m_MaxWidth, m_MaxHeight;
 		uint8_t m_Color;	//Color optained with vga_utils::entryColor
 		uint16_t* m_Buffer; //Adresse of vga
 
@@ -32,8 +32,8 @@ namespace Core {
 		_CharType* m_CustomCharArrayBuffer;	//array who contained folowed characters of custom char
 
 		//add c at position x, y with color color
-		void putEntryAt(const _CharType c, const uint8_t color, const size_t x, const size_t y) {
-			const size_t i = y * m_MaxWidth + x;
+		void putEntryAt(const _CharType c, const uint8_t color, const uint32_t x, const uint32_t y) {
+			const uint32_t i = y * m_MaxWidth + x;
 			m_Buffer[i] = vga_utils::entry(c, color);
 		}
 
@@ -111,9 +111,9 @@ namespace Core {
 			m_Row = m_Column = 0u;
 			m_Color = vga_utils::entryColor(fontColor, backgroundColor);
 			m_Buffer = (uint16_t*)VGA_ADDR;
-			for (size_t y(0u); y < m_MaxHeight; ++y) { //Filling columns and row of ' ' char to empty space
-				for (size_t x(0u); x < m_MaxWidth; ++x) {
-					const size_t i = y * m_MaxWidth + x;
+			for (uint32_t y(0u); y < m_MaxHeight; ++y) { //Filling columns and row of ' ' char to empty space
+				for (uint32_t x(0u); x < m_MaxWidth; ++x) {
+					const uint32_t i = y * m_MaxWidth + x;
 					m_Buffer[i] = vga_utils::entry(' ', m_Color);
 				}
 			}
@@ -131,8 +131,8 @@ namespace Core {
 		}
 
 		//Add str of size size to terminal
-		void write(const _CharType* str, const size_t size) {
-			for (size_t i(0u); i < size; ++i)
+		void write(const _CharType* str, const uint32_t size) {
+			for (uint32_t i(0u); i < size; ++i)
 				putChar(str[i]);
 		}
 	};

@@ -1,8 +1,7 @@
 #ifndef _KMOSLIB_H_GUARD
 #define _KMOSLIB_H_GUARD
-#include <stdint.h>
+#include "../extern/stdint.h"
 #include "kmosdefs.h"
-
 
 
 namespace kmos {
@@ -28,7 +27,7 @@ namespace kmos {
 	}
 
 	constexpr unsigned long ppow(unsigned long a, unsigned long b) { //Positive Pow
-		unsigned long re(1l);
+		unsigned long re(1ul);
 		while (b > 0) {
 			if ((b & 1) == 1) {
 				re *= a;
@@ -130,8 +129,8 @@ namespace kmos {
 		buf[size - 1] = '\0';
 		for (uint32_t _i(size - 2); i; i /= 10, --_i) 
 			buf[_i] = ('0' + char(i % 10));
+		
 		return size;
-
 	}
 
 	/*

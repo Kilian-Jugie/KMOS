@@ -6,33 +6,34 @@ namespace Extensions {
 
 	template<typename _Ty>class smart_ptr {
 		_Ty* m_Adrr;
-		size_t m_Size;
-		size_t m_Index;
+		uint32_t m_Size;
+		uint32_t m_Index;
 
 		constexpr void _free() {
 			if (m_Size == 0)
 				return;
 			if (m_Adrr) {
 				//delete[] m_Adrr;
-				Core::free(m_Adrr, kmos::rtpt(m_Size));
+				Core::__aligned_free(m_Adrr, kmos::rtpt(m_Size));
 				m_Adrr = NULL;
 			}
 		}
 
-		constexpr void _alloc(size_t size) {
+		constexpr void _alloc(uint32_t size) {
 			//m_Adrr = new _Ty[size];
 			void* tmp = Core::malloc(size);
 			m_Adrr = (_Ty*)tmp;
 		}
 
 	public:
-		constexpr smart_ptr(_Ty* addr, size_t size = 0u) : m_Adrr(addr), m_Size(size), m_Index(0u) {}
-		constexpr smart_ptr(const size_t size) : m_Size(size), m_Index(0u) {
+		constexpr smart_ptr(_Ty* addr, uint32_t size = 0u) : m_Adrr(addr), m_Size(size), m_Index(0u) {}
+		constexpr smart_ptr(const uint32_t size) : m_Size(size), m_Index(0u) {
 			_alloc(size);
 		}
 		constexpr smart_ptr() : m_Adrr(NULL), m_Size(0), m_Index(0u) {}
+		constexpr smart_ptr(const smart_ptr& c) : m_Size(c.m_Size), m_Adrr(c.m_Adrr), m_Index(c.m_Index) {}
 
-		constexpr void assign(_Ty* addr, size_t size, bool isArray, bool isDynamic) {
+		constexpr void assign(_Ty* addr, uint32_t size, bool isArray, bool isDynamic) {
 			if (!isDynamic) size = 0;
 			_free();
 			m_Size = isArray ? size : 0;
@@ -40,7 +41,7 @@ namespace Extensions {
 			return;
 		}
 
-		constexpr size_t size() const {
+		constexpr uint32_t size() const {
 			return m_Size;
 		}
 
@@ -50,11 +51,11 @@ namespace Extensions {
 			return *this;
 		}
 
-		constexpr char* get() const {
+		char* get() const {
 			return m_Adrr;
 		}
 
-		constexpr void realloc(size_t newSize) {
+		constexpr void realloc(uint32_t newSize) {
 			_free();
 			_alloc(newSize);
 			m_Size = newSize;
@@ -83,7 +84,8 @@ namespace Extensions {
 			return *m_Adrr;
 		}
 
-		constexpr _Ty& operator[](const size_t i) {
+		
+	_Ty& operator[](const uint32_t i) {
 			if (m_Size == 0) return *m_Adrr;
 			return m_Adrr[i];
 		}

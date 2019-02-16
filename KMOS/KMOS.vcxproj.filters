@@ -28,6 +28,9 @@
     <Filter Include="Fichiers sources\extensions">
       <UniqueIdentifier>{70c58c1f-6d46-459e-b525-62b17e048635}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\extern">
+      <UniqueIdentifier>{c6db52f6-bce9-4405-84d3-e46b2589e5fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\core\boot.s">
@@ -96,6 +99,12 @@
     </ClInclude>
     <ClInclude Include="src\extensions\smartptr.h">
       <Filter>Fichiers d%27en-tête\extensions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\asmlib.h">
+      <Filter>Fichiers d%27en-tête\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\extern\stdint.h">
+      <Filter>Fichiers d%27en-tête\extern</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

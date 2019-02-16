@@ -3,13 +3,16 @@ xorriso 1.4.2 : RockRidge filesystem manipulator, libburnia project.
 Drive current: -outdev 'stdio:bin/myos.iso'
 Media current: stdio file, overwriteable
 Media status : is blank
-Media summary: 0 sessions, 0 data blocks, 0 data,  745g free
-Added to ISO image: directory '/'='/tmp/grub.mgHqQq'
+Media summary: 0 sessions, 0 data blocks, 0 data,  337g free
+Added to ISO image: directory '/'='/tmp/grub.fC5TDI'
 xorriso : UPDATE : 277 files added in 1 seconds
 Added to ISO image: directory '/'='/mnt/d/BranlOS/KMOS/KMOS/bin/isodir'
 xorriso : UPDATE : 282 files added in 1 seconds
 xorriso : NOTE : Copying to System Area: 512 bytes from file '/usr/lib/grub/i386-pc/boot_hybrid.img'
-ISO image produced: 2483 sectors
-Written to medium : 2483 sectors at LBA 0
+xorriso : UPDATE :  49.62% done
+xorriso : UPDATE :  67.25% done
+xorriso : UPDATE :  84.53% done
+ISO image produced: 2495 sectors
+Written to medium : 2495 sectors at LBA 0
 Writing to 'stdio:bin/myos.iso' completed successfully.
 

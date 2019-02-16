@@ -1,0 +1,22 @@
+﻿  Linking boot file...
+  Compiling kernel...
+  Compiling cpp files...
+  ./src/core/kernel2.cpp: In function 'void memtest(Core::Kernel&)':
+./src/core/kernel2.cpp(26,10): warning G77590269: ISO C++ forbids converting a string constant to 'char*' [-Wwrite-strings]
+    array = "loli\0";
+            ^~~~~~~~
+  ./src/core/kernel2.cpp: In function 'void kernel_main()':
+./src/core/kernel2.cpp(118,12): warning G7C671A4C: unused variable 'p' [-Wunused-variable]
+     unsigned p = (unsigned)a.get();
+              ^
+./src/core/kernel2.cpp(119,12): warning G7C671A4C: unused variable 'h' [-Wunused-variable]
+     unsigned h = (unsigned)&k;
+              ^
+  Compiling file: ./src/core/kernel2.cpp
+  Compiling file: ./src/extensions/version.cpp
+  Compilation sucessfull !
+  Linking...
+  Launching OS GRUB checking...
+  OS GRUB checking is OK
+  Starting generating OS file...
+  All is done OS is ready

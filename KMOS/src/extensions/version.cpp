@@ -4,7 +4,7 @@
 namespace Extensions {
 	void version::base(uint32_t vers, uint32_t versionFormat) {
 		uint32_t sizeMaj(0u), sizeMin(0u), sizeEdi(0u), types(0u), off(0u);
-		if (MAJOR & versionFormat) {
+		if (MAJOR & versionFormat) { //TODO: optimizing this because it's very very ugly
 			sizeMaj = 1;
 			++types;
 		}

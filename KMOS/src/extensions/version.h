@@ -3,7 +3,7 @@
 
 #include "smartptr.h"
 
-#include <stdint.h>
+#include "../extern/stdint.h"
 
 #define VERS_STR(x) #x
 

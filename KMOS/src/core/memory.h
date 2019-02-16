@@ -1,3 +1,9 @@
+/* 
+	This work is licensed under the Creative Commons Attribution - NonCommercial - NoDerivatives 4.0 International License.
+	To view a copy of this license, visit http ://creativecommons.org/licenses/by-nc-nd/4.0/
+	or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+*/
+
 #ifndef _MEMORY_H_GUARD
 #define _MEMORY_H_GUARD
 #include "kmoslib.h"
@@ -15,36 +21,48 @@
  */
 
 #define MEMORY_SIZE_COUNT 21
-#define MINIMUM_ALIGNMENT 16
+#define MINIMUM_ALIGNMENT 16 //May not be changed ! (for optimization)
 
+//ISO C++ forbid void* increment
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpointer-arith"
 
 namespace Core {
 	namespace Memory {
 		extern "C" {
+			/*
+				A free memory block
+			*/
 			struct _mm_free_blk { //MeMory free BLocK
-				void* dataptr;
-				uint32_t size;
+				void* dataptr; //It adress
+				uint32_t size; //It size (2^aligned)
 			};
 
+			/*
+				A memory model: how the memory is represented for C
+			*/
 			struct _mm_gbl_mdl {  //MeMory GloBaL MoDeL
 				void* fmptr;	//Free Memory PoiTeR
 				_mm_free_blk* frrblks[MEMORY_SIZE_COUNT][100000]; //Free blocks
-				uint32_t freeblksIndex[MEMORY_SIZE_COUNT];
+				uint32_t freeblksIndex[MEMORY_SIZE_COUNT]; //Next indext to store block pointer in freeblks of each size
 
+				//Initializing indexes to 0 to avoid nullptrexception or anything else
 				_mm_gbl_mdl() {
 					for (uint32_t i(0u); i < MEMORY_SIZE_COUNT; ++i)
 						freeblksIndex[i] = 0u;
 				}
 			};
 
+			/*
+				Memory with the unique memory model instance
+				(used as gobal variable) but aligned thanks to struct
+			*/
 			struct _mm_core { //MeMory Core
 			private:
-				static _mm_gbl_mdl _gbl_mdl;
+				static _mm_gbl_mdl _gbl_mdl; //Memory
 
 			public:
-				inline static _mm_gbl_mdl* getGblMdl() {
+				inline static _mm_gbl_mdl* getGblMdl() { //Getter
 					return &_gbl_mdl;
 				}
 			};
@@ -64,7 +82,7 @@ namespace Core {
 	extern "C" {
 		void __initMemory() { //Init fmptr to a valable adresse
 			int BEGIN;
-			_mm_core::getGblMdl()->fmptr = &BEGIN;
+			_mm_core::getGblMdl()->fmptr = &BEGIN; //DANGEROUS !!! -> TO CHANGE 
 		}
 
 		/*
@@ -90,9 +108,7 @@ namespace Core {
 			return ret;
 		}
 
-		void free(void* ptr, uint32_t s, bool erase = false) {
-			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT; //We align s to power of 2
-			else s = rtpt(s);
+		void __aligned_free(void* ptr, uint32_t s, bool erase = false) {
 			if (erase) { //Erase is used with critical data who must leave no trace
 				for (uint32_t i(0u); i < s; ++i) {
 					++ptr = 0;
@@ -109,8 +125,17 @@ namespace Core {
 					return;
 				}
 			}
-			_mm_core::getGblMdl()->frrblks[l][_mm_core::getGblMdl()->freeblksIndex[l]++] = &blk; //Si aucun espace n'est trouvé, on rajoute à la fin en pensant à incrémenter l'index des blocks libres
+			//TODO: check if array isn't full
+			_mm_core::getGblMdl()->frrblks[l][_mm_core::getGblMdl()->freeblksIndex[l]++] = &blk; //If no spaces were founded, we add a new freeblock at the end of the array
 		}
+
+		void free(void* ptr, uint32_t s, bool erase = false) {
+			if (s < MINIMUM_ALIGNMENT) s = MINIMUM_ALIGNMENT; //We align s to power of 2
+			else s = rtpt(s);
+			__aligned_free(ptr, s, erase);
+		}
+
+		
 	}
 
 }
